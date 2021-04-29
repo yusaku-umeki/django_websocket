@@ -1,0 +1,24 @@
+[tool.black]
+line-length = 100
+
+[tool.isort]
+known_django = "django"
+profile = "black"
+sections = "FUTURE,STDLIB,DJANGO,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+
+[tool.poetry]
+name = "django_websocket"
+version = "0.1.0"
+description = ""
+authors = ["yusaku <astro.yu@icloud.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "^3.2"
+
+[tool.poetry.dev-dependencies]
+pre-commit = "^2.12.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
