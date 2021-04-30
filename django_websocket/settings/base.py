@@ -24,6 +24,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "chat",
+    "sass_processor",
+    "storages",
+    "channels",
 ]
 
 MIDDLEWARE = [
@@ -55,6 +59,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "django_websocket.wsgi.application"
+
+ASGI_APPLICATION = "django_websocket.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -102,6 +108,17 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "sass_processor.finders.CssFinder",
+]
+
+SASS_PROCESSOR_INCLUDE_FILE_PATTERN = r"^.+\.(sass|scss)$"
+SASS_PRECISION = 8
+SASS_OUTPUT_STYLE = "compressed"
+SASS_TEMPLATE_EXTS = ["html"]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

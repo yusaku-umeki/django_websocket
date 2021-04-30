@@ -15,6 +15,9 @@ authors = ["yusaku <astro.yu@icloud.com>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 Django = "^3.2"
+channels = "^3.0.3"
+django-sass-processor = "^1.0.1"
+django-storages = "^1.11.1"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.12.1"
