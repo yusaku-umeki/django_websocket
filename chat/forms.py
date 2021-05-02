@@ -4,4 +4,4 @@ from .models import Chat, ChatRoom
 
 
 class ChatRoomForm(forms.Form):
-    name = forms.CharField(max_length=50)
+    name = forms.CharField(max_length=50,label="ルーム名")

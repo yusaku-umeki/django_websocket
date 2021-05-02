@@ -4,7 +4,6 @@ import os
 from django.core.exceptions import ValidationError
 from django.core.files.base import ContentFile
 from django.core.validators import FileExtensionValidator
-from django.templatetags.static import static
 from django.utils import timezone
 
 from channels.db import database_sync_to_async
@@ -12,8 +11,6 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 
 from .constants import ACCEPT_LIST
 from .models import Chat, ChatRoom
-from .notification import MailNotification
-# from .signing import loads
 from .validators import FileSizeValidator
 
 
@@ -59,12 +56,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 FileSizeValidator(10 * 1024 * 1024, "ファイルサイズは10MB以下である必要があります。")(new_file)
             except ValidationError as e:
                 await self.send(text_data=json.dumps({"error_msg": e.message}))
+                return False
 
             new_chat = await self.create_chat_message(src=new_file)
             url = new_chat.src.url
-            # extend = os.path.splitext(url)[1][1:]
-            # if extend not in ["jpg", "jpeg", "png"]:
-            #     url = static("chat/svg/file_error.svg")
             await self.channel_layer.group_send(
                 self.room_group_name,
                 {
@@ -106,7 +101,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def set_room(self):
-        print(self.room_name)
         self.room = ChatRoom.objects.get(pk=self.room_name)
 
     @database_sync_to_async
