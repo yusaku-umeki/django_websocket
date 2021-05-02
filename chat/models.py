@@ -1,11 +1,13 @@
 import uuid
 
-from django.contrib.auth.models import User
-from django.contrib.sitemaps import ping_google
 from django.db import models
 
 
 class ChatRoom(models.Model):
+    """
+    チャットルームのモデル
+    同一のルームにいるクライアントとリアルタイムチャットが可能
+    """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField("ルーム名", max_length=50)
@@ -17,6 +19,9 @@ class ChatRoom(models.Model):
 
 
 class Chat(models.Model):
+    """
+    各チャットルーム内で行われるチャットのモデル
+    """
 
     room = models.ForeignKey(ChatRoom, on_delete=models.CASCADE)
     content = models.TextField("内容", blank=True, null=True)
