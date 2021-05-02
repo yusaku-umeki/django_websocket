@@ -1,0 +1,12 @@
+{% extends 'chat/base.html' %}
+
+{% block title %}ルーム入力画面{% endblock %}
+
+{% block body %}
+<h1>ルーム入力画面</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">決定</button>
+</form>
+{% endblock %}

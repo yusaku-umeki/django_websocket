@@ -18,6 +18,7 @@ Django = "^3.2"
 channels = "^3.0.3"
 django-sass-processor = "^1.0.1"
 django-storages = "^1.11.1"
+channels-redis = "^3.2.0"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.12.1"
