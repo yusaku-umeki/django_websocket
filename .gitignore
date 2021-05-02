@@ -156,3 +156,6 @@ media/
 
 # Django local settings
 **/settings/local.py
+
+# redis
+dump.rdb
